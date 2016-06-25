@@ -12,7 +12,7 @@ import cliparse from 'cliparse';
 import watchFiles from './watchFiles';
 
 const cliParser = cliparse.cli({
-  name: 'hackages <command> [options]',
+  name: 'hackages|hack <command> [options]',
   description: 'hackages not hackage like Haskell',
   commands: [
     webpack,
