@@ -1,4 +1,5 @@
 import path from 'path';
+import fs from 'fs';
 import webpack from 'webpack';
 import config from './configuration';
 import ImageminPlugin from 'imagemin-webpack-plugin';
@@ -38,14 +39,6 @@ const webpackConfig = {
           ],
         },
       },
-      // {
-      //   test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-      //   loader: 'url',
-      //   query: {
-      //     name: '[hash].[ext]',
-      //     limit: 10000,
-      //   },
-      // },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
         loader: 'url?name=[path][name].[ext]',
@@ -74,10 +67,6 @@ const webpackConfig = {
     ],
   },
   plugins: [
-    // new NpmInstallPlugin({
-    //   save: true,
-    //   peerDependencies: false,
-    // }),
     new ImageminPlugin({
       disable: false,
       optipng: {
