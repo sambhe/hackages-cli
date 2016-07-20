@@ -1,7 +1,8 @@
 import path from 'path';
+import fs from 'fs';
 import webpack from 'webpack';
-import BowerWebpackPlugin from 'bower-webpack-plugin';
 import config from './configuration';
+import ImageminPlugin from 'imagemin-webpack-plugin';
 
 const exclude = ['node_modules', 'bower_components'];
 
@@ -38,19 +39,10 @@ const webpackConfig = {
           ],
         },
       },
-      // {
-      //   test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
-      //   loader: 'url',
-      //   query: {
-      //     name: '[hash].[ext]',
-      //     limit: 10000,
-      //   },
-      // },
       {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
         loader: 'url?name=[path][name].[ext]',
       },
-
       {
         test: /\.(ttf|eot)$/,
         loader: 'file',
@@ -64,6 +56,9 @@ const webpackConfig = {
         loaders: ['style', 'css', 'autoprefixer'],
         exclude,
       },
+      { test: /\.styl$/,
+        loaders: ['style', 'css', 'stylus'],
+      },
       {
         test: /\.html$/,
         loader: 'html!html-minify',
@@ -72,14 +67,21 @@ const webpackConfig = {
     ],
   },
   plugins: [
-    new webpack.ResolverPlugin(
-      new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-    ),
-    new BowerWebpackPlugin({
-      modulesDirectories: ['bower_components'],
-      manifestFiles: 'bower.json',
-      includes: /\.js$/,
-      searchResolveModulesDirectories: true,
+    new ImageminPlugin({
+      disable: false,
+      optipng: {
+        optimizationLevel: 3,
+      },
+      gifsicle: {
+        optimizationLevel: 1,
+      },
+      jpegtran: {
+        progressive: false,
+      },
+      svgo: {
+      },
+      pngquant: null, // pngquant is not run unless you pass options here
+      plugins: [],
     }),
   ],
 };

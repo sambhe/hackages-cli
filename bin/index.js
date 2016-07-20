@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-process.title = 'hackages cli';
+process.title = 'hackages cli by @hackages';
 
-require('../dist/index.js');
+require('../dist/tools/parser/index.js');

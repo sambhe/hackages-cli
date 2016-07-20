@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const NpmInstallPlugin = require('npm-install-webpack-plugin');
 
 const config = {
   target: 'node',
@@ -20,7 +21,11 @@ const config = {
   resolve: {
     extensions: ['', '.js', '.json']
   },
-  plugins: [],
+  plugins: [
+    new NpmInstallPlugin({
+      save: true,
+    }),
+  ],
   module: {
     loaders: [
       {
@@ -37,7 +42,7 @@ const config = {
 };
 
 config.externals = fs.readdirSync("node_modules")
-  .reduce(function(acc, mod) {
+  .reduce((acc, mod) => {
     if (mod === ".bin") {
       return acc
     }
@@ -47,8 +52,8 @@ config.externals = fs.readdirSync("node_modules")
   }, {});
 
 if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin());
+  config.plugins.push(new webpack.optimize.OccurrenceOrderPlugin);
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin);
 }
 
 module.exports = config;
