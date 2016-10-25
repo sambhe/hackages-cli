@@ -1,6 +1,4 @@
 import path from 'path';
-import fs from 'fs';
-import webpack from 'webpack';
 import config from './configuration';
 import ImageminPlugin from 'imagemin-webpack-plugin';
 
