@@ -61,7 +61,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css', 'autoprefixer'],
+        loaders: ['style', 'css'],
         exclude,
       },
       {

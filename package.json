@@ -32,7 +32,6 @@
   "author": "davy@hackages.io",
   "license": "MIT",
   "dependencies": {
-    "autoprefixer-loader": "^3.2.0",
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.4",
     "babel-eslint": "^6.0.2",
