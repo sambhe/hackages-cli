@@ -2,7 +2,7 @@
   "name": "hackages",
   "version": "0.0.8",
   "description": "cli tools to build fast and scalable applications",
-  "main": "tools/index.js",
+  "main": "tools/parser/index.js",
   "scripts": {
     "pretest": "eslint tools",
     "preci": "rm -rf mocha.json && npm i",
@@ -12,8 +12,9 @@
     "lint": "eslint tools",
     "precommit": "npm run lint",
     "build": "webpack --config webpack.config.js",
-    "build-prod": "webpack --config webpack.config.js -p",
-    "watch": "webpack --config ./webpack.config.js -w",
+    "watch": "watchman tools/ 'npm run babel'",
+    "babel": "babel tools/**/*.js -d dist/",
+    "webpack": "webpack --config ./webpack.config.js -w",
     "start": "npm-run-all --parallel test watch",
     "predeploy": "npm run build",
     "deploy": "node publish.js"
@@ -30,6 +31,11 @@
     "javascript"
   ],
   "author": "davy@hackages.io",
+  "homepage": "https://github.com/hackages/hackages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackages/hackages.git"
+  },
   "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.6.5",
@@ -60,6 +66,7 @@
     "html-loader": "^0.4.3",
     "html-minify-loader": "^1.1.0",
     "husky": "^0.11.4",
+    "imagemin-webpack-plugin": "^1.0.7",
     "jasmine-core": "^2.4.1",
     "jasmine-expect": "^2.0.2",
     "jasmine-promise-matchers": "^2.0.2",
@@ -78,6 +85,8 @@
     "mocha": "^2.4.5",
     "mocha-bamboo-reporter": "^1.1.0",
     "npm": "^3.8.6",
+    "npm-install-webpack-plugin": "^4.0.3",
+    "npm-run-all": "^2.1.1",
     "path-exists": "^2.1.0",
     "phantomjs-prebuilt": "^2.1.6",
     "protractor": "^3.2.2",
@@ -88,9 +97,13 @@
     "style-loader": "^0.13.1",
     "surge": "^0.17.7",
     "url-loader": "^0.5.7",
+    "watchman": "^0.1.8",
     "webpack": "^1.12.14",
-    "webpack-node-externals": "^1.0.0",
-    "npm-install-webpack-plugin": "^4.0.3",
-    "npm-run-all": "^2.1.1"
+    "webpack-node-externals": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint-watch": "^2.1.11",
+    "html-webpack-plugin": "^2.21.0",
+    "style-ext-html-webpack-plugin": "^2.0.0-beta.3"
   }
 }

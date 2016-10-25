@@ -7,8 +7,8 @@ const cwd = process.cwd();
 const config = {
   outputDir: path.join(cwd, 'dist'),
   mainEntry: entry(),
-  nodeModules: path.join(__dirname, '../node_modules'),
-  bowerComponents: path.join(cwd, 'bower_components'),
+  nodeModules: path.join(__dirname, '../../../node_modules'),
+  // nodeModules: path.join(__dirname, '../node_modules'),
   context: cwd,
 };
 
@@ -16,8 +16,6 @@ const config = {
 if (!pathExists.sync(config.nodeModules)) {
   config.nodeModules = path.join(config.context, 'node_modules');
 }
-
-// TODO: we're not handling the case where there's no node_modules???
 
 config.npmCMD = `${config.nodeModules}/npm/bin/npm-cli.js`;
 config.liveCMD = `${config.nodeModules}/live-server/live-server.js`;
