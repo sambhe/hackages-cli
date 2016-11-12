@@ -2,8 +2,6 @@
 
 const git = require('git-rev');
 const npm = require('npm');
-console.log('inside publish');
-
 
 git.branch(function(branch){
   if (branch === 'develop') {
@@ -12,7 +10,6 @@ git.branch(function(branch){
     console.log('hey, you cannot push on something else than the develop branch');
   }
 });
-
 
 function doPublish(){
   npm.load({}, function(err) {
