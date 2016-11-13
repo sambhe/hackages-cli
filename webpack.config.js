@@ -13,13 +13,13 @@ const config = {
     __filename: false,
     __dirname: false,
   },
-  entry: './tools/parser/index.js',
+  entry: './tools/typescript/index.ts',
   output: {
     filename: 'index.js',
     path: path.join(__dirname, 'dist')
   },
   resolve: {
-    extensions: ['', '.js', '.json']
+    extensions: ['', '.ts', '.js', '.json']
   },
   plugins: [
     new NpmInstallPlugin({
@@ -31,6 +31,11 @@ const config = {
       {
         test: /\.js$/,
         loaders: ['babel', 'eslint'],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.ts$/,
+        loaders: ['ts'],
         exclude: /node_modules/,
       },
       {
