@@ -3,3 +3,6 @@ node_modules/
 mocha.json
 npm-debug.log
 .idea
+.vscode/
+typings/
+dist/

@@ -7,17 +7,16 @@
     "pretest": "eslint tools",
     "preci": "rm -rf mocha.json && npm i",
     "ci": "mocha -R mocha-bamboo-reporter",
-    "test": "mocha test -w",
+    "test": "mocha test/*.ts",
+    "test:watch": "npm test -- --watch",
     "codecov": "mocha -- -R -spec && codecov",
     "lint": "eslint tools",
     "precommit": "npm run lint",
-    "build": "webpack --config webpack.config.js",
-    "watch": "watchman tools/ 'npm run babel'",
-    "babel": "babel tools/**/*.js -d dist/",
-    "webpack": "webpack --config ./webpack.config.js -w",
-    "start": "npm-run-all --parallel test watch",
-    "predeploy": "npm run build",
-    "deploy": "node publish.js"
+    "build": "webpack",
+    "build:watch": "webpack -w",
+    "start": "npm-run-all --parallel test:watch build:watch",
+    "prestart": "npm run typings",
+    "typings": "typings install"
   },
   "bin": {
     "hackages": "bin/index.js",
@@ -30,11 +29,11 @@
     "hackages",
     "javascript"
   ],
-  "author": "davy@hackages.io",
-  "homepage": "https://github.com/hackages/hackages",
+  "author": "team@hackages.io",
+  "homepage": "https://github.com/hackages/hackages-cli",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hackages/hackages.git"
+    "url": "git+https://github.com/hackages/hackages-cli.git"
   },
   "license": "MIT",
   "dependencies": {
@@ -50,7 +49,6 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
     "babel-runtime": "^6.6.1",
-    "chai": "^3.5.0",
     "chalk": "^1.1.1",
     "cliparse": "^0.2.5",
     "commander": "^2.9.0",
@@ -91,11 +89,11 @@
     "phantomjs-prebuilt": "^2.1.6",
     "protractor": "^3.2.2",
     "raw-loader": "^0.5.1",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
     "shelljs": "^0.7.0",
     "style-loader": "^0.13.1",
     "surge": "^0.17.7",
+    "ts-loader": "^1.2.0",
+    "typescript": "^2.0.9",
     "url-loader": "^0.5.7",
     "watchman": "^0.1.8",
     "webpack": "^1.12.14",
@@ -104,6 +102,14 @@
   "devDependencies": {
     "eslint-watch": "^2.1.11",
     "html-webpack-plugin": "^2.21.0",
-    "style-ext-html-webpack-plugin": "^2.0.0-beta.3"
+    "style-ext-html-webpack-plugin": "^2.0.0-beta.3",
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.32",
+    "@types/sinon": "^1.16.31",
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6",
+    "ts-node": "^1.6.0",
+    "tslint": "^3.15.1"
   }
 }
