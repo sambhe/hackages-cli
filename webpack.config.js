@@ -13,7 +13,7 @@ const config = {
     __filename: false,
     __dirname: false,
   },
-  entry: './tools/typescript/index.ts',
+  entry: './tools/parser/index.ts',
   output: {
     filename: 'index.js',
     path: path.join(__dirname, 'dist')

@@ -45,9 +45,10 @@
 /***/ function(module, exports) {
 
 	"use strict";
-	function App() {
-	}
-	exports.App = App;
+	/**
+	* CLI tools: Command line tool
+	**/
+	exports.build = 12;
 
 
 /***/ }
