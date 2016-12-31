@@ -29,19 +29,10 @@ const config = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        loaders: ['babel', 'eslint'],
-        exclude: /node_modules/,
-      },
-      {
         test: /\.ts$/,
         loaders: ['ts'],
         exclude: /node_modules/,
       },
-      {
-        test: /\.json$/,
-        loader: 'json',
-      }
     ]
   }
 };

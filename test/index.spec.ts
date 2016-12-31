@@ -3,6 +3,7 @@ import { build } from '../tools/parser/';
 
 describe('List of features', () => {
     it('Build', () => {
-        expect(typeof 2).to.equal('number');
+        expect(typeof build).to.equal('function');
+        expect(build()).to.equal(void 0);
     })
 })
